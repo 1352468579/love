@@ -132,7 +132,7 @@ $(document).ready(function(){
     <!--选卡1-->
     <div class="Testim">
       <div class="Con" id="Tab5Con1" style="display:block;">
-        <div class="movie" onclick="w_my_video('http://m.hongpoo.com/shipin/znz.mp4')"><img src="{APP_PATH}statics/fst/images/IMG_0496.jpg" alt="" width="327" height="300" class="move" style="cursor:pointer;margin-top:-8px;margin-left:-10px"> </div>
+        <div class="movie" onclick="w_my_video('http://m.hongpoo.com/shipin/znz.mp4','幸福指南针')"><img src="{APP_PATH}statics/fst/images/IMG_0496.jpg" alt="" width="327" height="300" class="move" style="cursor:pointer;margin-top:-8px;margin-left:-10px"> </div>
       </div>
     </div>
   </div>
@@ -320,11 +320,12 @@ $(document).ready(function(){
 <div class="floor4-right_bottom">
 <dt>截止
 <script>
-    function w_my_video(url){
+    function w_my_video(url,name){
+        name = name?name:"幸福指南针";
         layer.open({
             skin: 'demo-class',
             type: 2,
-            title: '幸福指南针',
+            title: name,
             shadeClose: true,
             shade: 0.8,
             area: ['900px', '548px'],
@@ -559,17 +560,17 @@ var _hmt = _hmt || [];
 
 <!--爱恋图库-->
 <div class="floor9 wrap">
-    <h3>老师简介</h3>
+    <h3>专家简介</h3>
     <div class="kinMaxShow1-wrap1">
         <a id="prev1"></a>
         <a id="next1"></a>
         <div class="kinMaxShow1-wrap">
             <div id="kinMaxShow11">
                 <ul>
-                    <li><a onclick="w_my_video('http://m.hongpoo.com/shipin/t_fan.mp4')" href="javascript:" title=""><img src="statics/images/video_img/video_f.jpg" alt="范维老师" />范维老师</a></li>
-                    <li><a onclick="w_my_video('http://m.hongpoo.com/shipin/t_qin.mp4')" href="javascript:"><img src="statics/images/video_img/video_q.jpg" alt="秦天老师" />秦天老师</a></li>
-                    <li><a onclick="w_my_video('http://m.hongpoo.com/shipin/t_si.mp4')" href="javascript:"><img src="statics/images/video_img/video_s.jpg" alt="斯雯老师" />斯雯老师</a></li>
-                    <li><a onclick="w_my_video('http://m.hongpoo.com/shipin/t_xu.mp4')" href="javascript:"><img src="statics/images/video_img/video_x.jpg" alt="徐逸飞老师" />徐逸飞老师</a></li>
+                    <li><a onclick="w_my_video('http://m.hongpoo.com/shipin/t_fan.mp4','专家简介-范维老师')" href="javascript:" title=""><img src="statics/images/video_img/video_f.jpg" alt="范维老师" />范维老师</a></li>
+                    <li><a onclick="w_my_video('http://m.hongpoo.com/shipin/t_qin.mp4','专家简介-秦天老师')" href="javascript:"><img src="statics/images/video_img/video_q.jpg" alt="秦天老师" />秦天老师</a></li>
+                    <li><a onclick="w_my_video('http://m.hongpoo.com/shipin/t_si.mp4','专家简介-斯雯老师')" href="javascript:"><img src="statics/images/video_img/video_s.jpg" alt="斯雯老师" />斯雯老师</a></li>
+                    <li><a onclick="w_my_video('http://m.hongpoo.com/shipin/t_xu.mp4','专家简介-徐逸飞老师')" href="javascript:"><img src="statics/images/video_img/video_x.jpg" alt="徐逸飞老师" />徐逸飞老师</a></li>
                     <!--<li><a onclick="w_my_video('http://m.hongpoo.com/shipin/znz.mp4')" href="javascript:"><img src="/statics/images/video_img/video_q.jpg" alt="爱恋专家坐镇天涯知识专家栏目" />爱恋专家坐镇天涯知识专家栏目</a></li>-->
                 </ul>
             </div>
