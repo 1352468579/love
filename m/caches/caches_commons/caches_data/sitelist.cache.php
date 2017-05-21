@@ -1,0 +1,41 @@
+<?php
+return array (
+  1 => 
+  array (
+    'siteid' => '1',
+    'name' => '成都幸福指南针科技有限公司',
+    'dirname' => '',
+    'domain' => 'http://www.ailianlove.com/',
+    'site_title' => '爱恋情感教你如何挽回爱情|怎样挽回爱情|挽回爱情|挽回婚姻|爱恋感修复中心-专业情感服务机构|成都情感挽回机构哪家好【love.爱恋】',
+    'keywords' => '爱恋教你如何挽回爱情,如何挽回婚姻,怎样挽回爱情,怎样挽回婚姻,老公/老婆出轨了怎么办,发现老公/老婆有外遇该怎么办,分手了如何挽回，成都婚姻挽回,成都恋爱挽回,成都情感挽回机构，挽回机构哪家好？',
+    'description' => '爱恋情感是四川电视台战略合作伙伴，民政局婚姻健康讲座合作单位。【love.爱恋】帮助你挽回爱情,挽救婚姻,解决老公出轨,老公外遇,老婆外遇,老婆出轨,因第三者插足造成离婚等各种情感问题的，爱恋情感是您在如何挽回爱情、怎样挽回爱情、如何挽回婚姻、怎样挽回婚姻、老公出轨怎么办道路上的指路明灯。爱恋[LOVE]老师具有丰富的情感挽回实操经验,助您的感情之路获取成功。',
+    'my_tel' => '400-138-4688',
+    'my_mobile' => '',
+    'my_fax' => '028-85919803',
+    'my_address' => '成都市锦江区静安路3号附138号春天广场3楼',
+    'my_sina' => '',
+    'my_tqq' => '',
+    'my_qq01' => '3013923209',
+    'my_qq02' => '',
+    'my_qq03' => '',
+    'my_email' => '',
+    'my_icp' => '蜀ICP备15032440号-1',
+    'release_point' => '',
+    'default_style' => 'fst',
+    'template' => 'fst',
+    'setting' => 'array (
+  \'upload_maxsize\' => \'2048\',
+  \'upload_allowext\' => \'jpg|jpeg|gif|bmp|png|doc|docx|xls|xlsx|ppt|pptx|pdf|txt|rar|zip|swf\',
+  \'watermark_enable\' => \'0\',
+  \'watermark_minwidth\' => \'300\',
+  \'watermark_minheight\' => \'300\',
+  \'watermark_img\' => \'statics/images/water//mark.png\',
+  \'watermark_pct\' => \'85\',
+  \'watermark_quality\' => \'80\',
+  \'watermark_pos\' => \'9\',
+)',
+    'uuid' => '87503656-4e47-11e6-bad8-f079596c9266',
+    'url' => 'http://www.ailianlove.com/',
+  ),
+);
+?>

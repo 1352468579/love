@@ -1,0 +1,67 @@
+<!--公用尾部 开始-->
+<div class="clearfix"></div>
+<div class="footer-wrap">
+  <div class="footer-top">
+    <div class="wrap">
+      <dl class="f1">
+        <dt>关于我们</dt>
+        <dd><a href="{$CATEGORYS[28][url]}">{$CATEGORYS[28][catname]}</a></dd>
+        <dd><a href="{$CATEGORYS[33][url]}">{$CATEGORYS[33][catname]}</a></dd>
+      </dl>
+      <dl class="f2">
+        <dt>联系我们</dt>
+{pc:get sql="SELECT setting FROM ailianlove_poster WHERE spaceid = 3 AND type='images' AND disabled=0 ORDER BY id ASC" num="1"}
+{loop $data $r}
+<?php eval("\$narry = $r[setting];");?>
+        <dd>{$narry[1][alt]}</dd>
+        <img src="{$narry[1][imageurl]}" alt="{$narry[1][alt]}">
+{/loop}
+{/pc}
+      </dl>
+      <dl class="f3">
+        <dt>免费幸福热线</dt>
+        <dd>{$SITES[$siteid][my_tel]}</dd>
+      </dl>
+    </div>
+  </div>
+  <div class="footer-copy">Copyright © 2016 {$SITES[$siteid][name]} 版权所有 {$SITES[$siteid][my_icp]} 技术支持：<a href="http://www.028fast.com" target="_blank">凡思特科技</a></div>
+  <div class="footer-bottom">
+    <div class="wrap">地址：{$SITES[$siteid][my_address]} 电话：{$SITES[$siteid][my_tel]} 服务项目：婚恋复合 · 婚恋危机处理 · 小三分离 · 长期关系处理 · 情感巩固</div>
+  </div>
+</div>
+<!-- ailianlove.com Baidu tongji analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+var hm = document.createElement("script");
+hm.src = "https://hm.baidu.com/hm.js?15d8350ba7ebaf4fb1a67a5e08fe209e";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?a5ca9caba6ca4371f1e9a596df09bb45";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script type='text/javascript'>
+    (function(m, ei, q, i, a, j, s) {
+        m[i] = m[i] || function() {
+            (m[i].a = m[i].a || []).push(arguments)
+        };
+        j = ei.createElement(q),
+            s = ei.getElementsByTagName(q)[0];
+        j.async = true;
+        j.charset = 'UTF-8';
+        j.src = '//static.meiqia.com/dist/meiqia.js';
+        s.parentNode.insertBefore(j, s);
+    })(window, document, 'script', '_MEIQIA');
+    _MEIQIA('entId', 36303);
+</script>
+
+</body>
+</html>

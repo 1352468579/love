@@ -1,0 +1,97 @@
+﻿{template "content","header-m"}
+<script type="text/javascript" src="{JS_PATH}jquery.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}member_common.js"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<script type="text/javascript" src="{JS_PATH}dialog.js"></script>
+<script language="JavaScript">
+$(function(){
+	$.formValidator.initConfig({autotip:true,formid:"myform",onerror:function(msg){}});
+	$("#username").formValidator({onshow:"{L('input').L('username')}",onfocus:"{L('username').L('between_2_to_20')}"}).inputValidator({min:2,max:20,onerror:"{L('username').L('between_2_to_20')}"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('username').L('format_incorrect')}"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=member&c=index&a=public_checkname_ajax",
+		datatype : "html",
+		async:'false',
+		success : function(data){
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "此用户名已被注册，换一个试试",
+		onwait : "{L('connecting_please_wait')}"
+	});1
+	$("#mobile").formValidator({onshow:"请填写您的手机号码哦",onfocus:"手机号码应该为11位哦"}).inputValidator({min:11,max:11,onerror:"手机号码应该为11位哦"});
+	$("#password").formValidator({onshow:"请输入密码，不能使用特殊字符哦",onfocus:"{L('password').L('between_6_to_20')}"}).inputValidator({min:6,max:20,onerror:"{L('password').L('between_6_to_20')}"});
+	$("#pwdconfirm").formValidator({onshow:"{L('input').L('cofirmpwd')}",onfocus:"{L('passwords_not_match')}",oncorrect:"{L('passwords_match')}"}).compareValidator({desid:"password",operateor:"=",onerror:"{L('passwords_not_match')}"});
+	$("#email").formValidator({onshow:"{L('input').L('email')}",onfocus:"{L('email').L('format_incorrect')}",oncorrect:"{L('email').L('format_right')}"}).inputValidator({min:7,max:32,onerror:"{L('email').L('between_7_to_32')}"}).regexValidator({regexp:"email",datatype:"enum",onerror:"{L('email').L('format_incorrect')}"}).ajaxValidator({
+	    type : "get",
+		url : "",
+		data :"m=member&c=index&a=public_checkemail_ajax",
+		datatype : "html",
+		async:'false',
+		success : function(data){	
+            if( data == "1" ) {
+                return true;
+			} else {
+                return false;
+			}
+		},
+		buttons: $("#dosubmit"),
+		onerror : "{L('deny_register').L('or').L('email_already_exist')}",
+		onwait : "{L('connecting_please_wait')}"
+	});
+	$("#nickname").formValidator({onshow:"请输入姓名",onfocus:"姓名应该为2-20位之间"}).inputValidator({min:2,max:20,onerror:"姓名应该为2-20位之间"}).regexValidator({regexp:"ps_username",datatype:"enum",onerror:"{L('nickname').L('format_incorrect')}"}).ajaxValidator({
+			type : "get",
+			url : "",
+			data :"m=member&c=index&a=public_checknickname_ajax",
+			datatype : "html",
+			async:'false',
+			success : function(data){
+				if( data == "1" ) {
+					return true;
+				} else {
+					return false;
+				}
+			},
+			buttons: $("#dosubmit"),
+			onerror : "已经被注册啦，换个试试吧！",
+			onwait : "{L('connecting_please_wait')}"
+		});
+	{$formValidator}
+});
+</script>
+<div class="wrap page-reg">
+  <ul>
+    <form method="post" action="" id="myform">
+      <li><span><em>*</em>用户名：</span>
+        <input type="text" id="username" name="username">
+      </li>
+      <li><span><em>*</em>姓名：</span>
+        <input type="text" id="nickname" name="nickname">
+      </li>
+      <li><span><em>*</em>电话：</span>
+        <input type="text" name="mobile" id="mobile">
+      </li>
+      <li><span><em>*</em>邮箱：</span>
+        <input type="text" id="email" name="email">
+      </li>
+      <li><span><em>*</em>密码：</span>
+        <input type="password" id="password" name="password">
+      </li>
+      <li><span><em>*</em>确认密码：</span>
+        <input type="password" name="pwdconfirm" id="pwdconfirm">
+      </li>
+      <li><span><em>*</em>验证码：</span>
+        <input type="text" id="code" name="code">{form::checkcode('code_img', '4', '14', 120, 26)}
+      </li>
+      <li><span><em>&nbsp;</em></span>
+        <input type="submit" name="dosubmit" value="提交" id="dosubmit">
+      </li>
+    </form>
+  </ul>
+</div>
+{template "content","footer2"}

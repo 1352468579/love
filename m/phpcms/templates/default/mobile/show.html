@@ -1,0 +1,20 @@
+{template "mobile","header"}
+<div class="wrap">
+<div class="fast-links"><a class="l1" href="javascript:history.back(-1);"></a><a class="l2" href="index.php?m=mobile"></a></div>
+<div class="now">{list_pos($catid)}正文</div>
+<div class="content">
+<dl class="info">
+<dt>{$title}</dt>
+<dd>{$inputtime}</dd>
+</dl>
+<div class="content_con">
+{if $pictureurls}
+{loop $pictureurls $pic_k $r}
+<p align="center"><img src="{$r[url]}" alt="{$r[alt]}"/></p>
+{/loop}
+{/if}
+{$content}
+</div>
+</div>
+</div>
+{template "mobile","footer"}

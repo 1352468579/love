@@ -1,0 +1,33 @@
+﻿{template "content","header-m"}
+<div class="banner"></div>
+<div class="wrap">
+  <div class="main-wrap">
+    <div class="main-left">
+      <h3>会员专区</h3>
+      <ul>
+<li class="current"><a href="index.php?m=member&c=index&a=gai_intro">会员信息</a></li>
+<li><a href="index.php?m=content&c=index&a=lists&catid=40">情感测试</a></li>
+<li><a href="index.php?m=content&c=index&a=lists&catid=43">资料分享</a></li>
+<li><a href="index.php?m=content&c=index&a=lists&catid=44">题库下载</a></li>
+<li><a href="index.php?m=content&c=index&a=lists&catid=45">电子书籍</a></li>
+<li><a href="index.php?m=member&c=index&a=logout">退出登录</a></li>
+      </ul>
+    </div>
+    <div class="main-right">
+      <h3 class="main-right_tit">会员信息<span></span></h3>
+<div class="page-faq gai_intro">
+  <ul>
+<form method="post" action="index.php?m=member&c=index&a=gai_intro" id="myform" name="myform">
+  <li><span>姓名：</span><input name="nickname" type="text" id="nickname" value="{$memberinfo['nickname']}"></li>
+  <li><span>手机号码：</span><input name="mobile" type="text" id="mobile" value="{$memberinfo['mobile']}"></li>
+  <li><span>邮箱：</span><input name="email" type="text" id="email" value="{$memberinfo['email']}"></li>
+  <li><span>旧密码：</span><input name="password" type="password" id="password" value="" placeholder="不修改留空即可"></li>
+  <li><span>新密码：</span><input name="newpassword" type="password" id="newpassword" value="" placeholder="修改密码后需要重新登录哦"></li>
+  <li><span>&nbsp;</span><input name="dosubmit" type="submit" id="dosubmit" value="提交"></li>
+</form>
+</ul>
+</div>
+    </div>
+  </div>
+</div>
+{template "content","footer2"}

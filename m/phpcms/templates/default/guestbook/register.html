@@ -1,0 +1,50 @@
+{template "content","header"}
+<script type="text/javascript" src="{JS_PATH}formvalidator.js" charset="UTF-8"></script> 
+<script type="text/javascript" src="{JS_PATH}formvalidatorregex.js" charset="UTF-8"></script>
+<link href="{CSS_PATH}link.css" rel="stylesheet" type="text/css" />
+<link href="{CSS_PATH}table_form.css" rel="stylesheet" type="text/css" /> 
+<!--main-->
+<div class="main">
+<form action="{APP_PATH}index.php?m=guestbook&c=index&a=register" method="post" name="myform" id="myform">
+<table cellspacing="1" cellpadding="0" class="table_form">
+<caption>在线留言</caption>
+<tbody>
+
+<tr> 
+<th>姓名：</th>
+<td><input type="text"  name="name" class="input-text"></td>
+</tr>
+<tr> 
+<th>Q Q：</th>
+<td><input type="text"  name="qq"  class="input-text"></td>
+</tr>
+
+<tr> 
+<th>手机：</th>
+<td><input type="text"  name="phone" class="input-text"></td>
+</tr>
+<tr> 
+<th>邮箱：</th>
+<td><input type="text"  name="email" class="input-text"></td>
+</tr>
+
+<tr>
+  <th>内容：</th>
+  <td><textarea name="content" cols="40" rows="5" class="input-text"  style='width:500px;height:70px; resize:none;'></textarea></td>
+</tr>
+
+<tr>
+<th>验证码：</th>
+<td><input name="code" type="text"  size="10"  class="input-text"/> {form::checkcode('code_img','4','14',110,30)}</td>
+</tr>
+
+<tr> 
+<th></th>
+<td><input type="submit" value=" 提交 " name="dosubmit" class="button"> </td>
+</tr> 
+</tbody></table>
+</form>
+ 
+</div>
+
+{template "content","footer"}

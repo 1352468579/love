@@ -1,0 +1,36 @@
+{template "content","header"}
+<link href="{CSS_PATH}link.css" rel="stylesheet" type="text/css" />
+<!--main-->
+<div class="main">
+	<!--left_bar-->
+	<div class="col-left">
+    <div class="crumbs"><a href="{siteurl($siteid)}">网站首页</a><span> &gt; </span><a href="{APP_PATH}index.php?m={ROUTE_M}&siteid={$siteid}">在线留言</a></div>
+    <div class="box boxsbg cboxs">
+   
+    {pc:guestbook action="lists"  siteid="$siteid"  order="id desc" num="6" return="data"}
+        {loop $data $v}
+         {$v['content']}&nbsp;&nbsp;{date("Y-m-d H:i:s",$v['addtime'])}<br /><br />
+        {/loop}
+    {/pc}
+    <br /><br />
+    
+    {pc:get sql="select * from v9_guestbook where  passed=1 order by id desc" return="data" num="10" page="$_GET[page]"}
+    {loop $data $r}
+    {$r['id']}-{$r['content']}<br />
+    {/loop}
+    {/pc}
+    <br />
+    <br />
+   <div id="pages">{$pages}</div>
+    </div>
+    </div>
+    <!--right_bar-->
+    <div class="col-auto">
+    	
+         <div class="txt_c">
+            <a href="{APP_PATH}index.php?m=guestbook&c=index&a=register" style="width: 142px;height: 47px; border-radius:10px; font-size:24px; background:#069; color:#FFF; line-height:47px;display: block;margin: 10px auto;">在线留言</a>
+        </div>
+       
+     </div>
+</div>
+{template "content","footer"}

@@ -1,0 +1,61 @@
+{template "content","header"}
+<?php
+//读取用户信息
+$userid = param::get_cookie('_userid');
+if(!empty($userid)){
+$memberinfo=get_memberinfo($userid);
+}
+?>
+<div class="banner"></div>
+<div class="wrap">
+  <div class="main-wrap">
+    <div class="main-left">
+      <h3>会员专区</h3>
+      <ul>
+<li><a href="index.php?m=member&c=index&a=gai_intro">会员信息</a></li>
+<li{if $catid==40} class="current"{/if}><a href="index.php?m=content&c=index&a=lists&catid=40">情感测试</a></li>
+<li{if $catid==43} class="current"{/if}><a href="index.php?m=content&c=index&a=lists&catid=43">资料分享</a></li>
+<li{if $catid==44} class="current"{/if}><a href="index.php?m=content&c=index&a=lists&catid=44">题库下载</a></li>
+<li{if $catid==45} class="current"{/if}><a href="index.php?m=content&c=index&a=lists&catid=45">电子书籍</a></li>
+<li><a href="{if $memberinfo['nickname']}index.php?m=member&c=index&a=logout{else}index.php?m=member&c=index&a=login{/if}">{if $memberinfo['nickname']}退出登录{else}用户登录{/if}</a></li>
+      </ul>
+    </div>
+    <div class="main-right">
+      <h3 class="main-right_tit">{$CATEGORYS[$catid][catname]}<span></span></h3>
+<p style="margin-top:20px;color:#ccc;font-size:14px;">友情提示：如果点击无法下载，请在下载图标处，点鼠标右键--链接另存为。</p>
+{pc:content action="lists" catid="$catid" num="12" order="listorder DESC" page="$page"}
+<table width="100%" border="1" cellspacing="0" cellpadding="0" style="margin-top:10px; text-align:center; line-height:25px;" bordercolor="#E7E7E7">
+<tr>
+    <td width="49%"><strong>文档名称</strong></td>
+    <td width="16%"><strong>上传时间</strong></td>
+    <td width="13%"><strong>文档类型</strong></td>
+    <td width="12%"><strong>文档大小</strong></td>
+    <td width="10%"><strong>下载</strong></td>
+    </tr>
+{loop $data $val}
+{pc:get sql="SELECT downfiles FROM ailianlove_download_data WHERE id =$val[id]"}
+{loop $data $x}
+<?php
+eval("\$downfilesname=$x[downfiles];");
+$fileurl_a = $downfilesname[0][fileurl];
+$true_filename = $fileurl_a;
+?>
+{/loop}{/pc}
+    <tr>
+    <td style="text-align:left; padding-left:10px;"><a href="{if $memberinfo['nickname']=="" && $val[quanxian]==1}{$fileurl_a}{elseif $memberinfo['nickname']=="" && $val[quanxian]==""}index.php?m=member{elseif $memberinfo['nickname']}{$fileurl_a}{/if}" target="_blank">{$val[title]}</a></td>
+    <td>{date('Y.m.d',$val[inputtime])}</td>
+    <td>{strtoupper(substr($fileurl_a,strrpos($fileurl_a,".")+1,strlen($fileurl_a)))}</td>
+    <td><?php 
+    echo strlen(file_get_contents($true_filename));
+    ?></td>
+    <td><a href="{if $memberinfo['nickname']=="" && $val[quanxian]==1}{$fileurl_a}{elseif $memberinfo['nickname']=="" && $val[quanxian]==""}index.php?m=member{elseif $memberinfo['nickname']}{$fileurl_a}{/if}" target="_blank"><img src="{siteurl($siteid)}/statics/fst/images/ico20.gif" border="0"></a></td>
+    </tr>
+{/loop}
+</table>
+{/pc}
+<div class="clearfix"></div>
+{if $pages}<div class="pagenav">{$pages}</div>{/if}
+    </div>
+  </div>
+</div>
+{template "content","footer"}

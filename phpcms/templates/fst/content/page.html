@@ -1,0 +1,32 @@
+{template "content","header"}
+<?php
+if($child){
+     $child_arrary=explode(',',$arrchildid);
+        $to_url=$CATEGORYS[$child_arrary[1]][url];
+  echo "<script>window.location.href='".$to_url."'</script>";
+    }
+?>
+<div class="banner"></div>
+<div class="wrap">
+  <div class="main-wrap">
+    <div class="main-left">
+      <h3>{if $parentid}{$CATEGORYS[$parentid][catname]}{else}{$CATEGORYS[$catid][catname]}{/if}</h3>
+      <ul>
+{if $arrchild_arr}
+{loop $arrchild_arr $cid}
+<li{if $catid==$cid} class="current"{/if}><a href="{$CATEGORYS[$cid][url]}" title="{$CATEGORYS[$cid][catname]}">{$CATEGORYS[$cid][catname]}</a></li>
+{/loop}
+{else}
+<li class="current"><a href="{$CATEGORYS[$catid][url]}" title="{$CATEGORYS[$catid][catname]}">{$CATEGORYS[$catid][catname]}</a></li>
+{/if}
+      </ul>
+    </div>
+    <div class="main-right">
+      <h3 class="main-right_tit">{$CATEGORYS[$catid][catname]}<span></span></h3>
+      <div class="content">
+        {$content}
+      </div>
+    </div>
+  </div>
+</div>
+{template "content","footer"}

@@ -1,0 +1,20 @@
+User-agent: * 
+Disallow: /Js/
+Disallow: /css/
+Disallow: /install/
+Disallow: /uploadfile
+Disallow: /028fast/
+Disallow: /others/
+Disallow: /.jpg
+Disallow: /2012
+Disallow: /2013
+Disallow: /2014
+Disallow: /2015
+Disallow: /2016
+Disallow: /2017
+Disallow: /savelove
+Disallow: /html
+
+
+sitemap:http://www.ailianlove.com/sitemap.html
+

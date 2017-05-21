@@ -1,0 +1,32 @@
+{template "content","header"}
+<div class="banner"></div>
+<div class="wrap">
+  <div class="main-wrap">
+    <div class="main-left">
+      <h3>{$CATEGORYS[$catid][catname]}</h3>
+      <ul>
+{pc:content action="category" catid="$catid" num="6" siteid="$siteid" order="listorder ASC"}
+{loop $data $r}
+<li><a href="{$r[url]}" title="{$r[catname]}">{$r[catname]}</a></li>
+{/loop}
+{/pc}
+      </ul>
+    </div>
+    <div class="main-right">
+      <h3 class="main-right_tit">{$CATEGORYS[$catid][catname]}<span></span></h3>
+      <ul class="list_team">
+{pc:content action="lists" catid="$catid" num="9" order="listorder DESC" page="$page"}
+{loop $data $r}
+<li class="list_team-{$n}"><a href="{$r[url]}" title="{$r[title]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/>
+  <dt>{$r[title]}</dt>
+  <dd>{str_cut($r[description],133)}</dd>
+  <span>了解更多</span></a></li>
+{/loop}
+{/pc}
+      </ul>
+      <div class="clearfix"></div>
+      {if $pages}<div class="pagenav">{$pages}</div>{/if}
+    </div>
+  </div>
+</div>
+{template "content","footer"}

@@ -1,0 +1,209 @@
+{template "mobile","header"}
+<style>
+    body .demo-class .layui-layer-title{background:#e4004b; color:#fff; border: none;}
+    body .demo-class .layui-layer-btn{border-top:1px solid #E9E7E7}
+    body .demo-class .layui-layer-btn a{background:#333;}
+    body .demo-class .layui-layer-btn .layui-layer-btn1{background:#999;}
+    .floor4-left ul li a {color: #666}
+</style>
+<div class="flexslider">
+<ul class="slides">
+{pc:get sql="SELECT setting FROM ailianlove_poster WHERE spaceid = 4 AND type='images' AND disabled=0 ORDER BY listorder ASC" num="6"}
+{loop $data $r}
+<?php eval("\$narry = $r[setting];");?>
+<li style="background:url({$narry[1][imageurl]}) 50% 0 no-repeat;"></li>
+{/loop}
+{/pc}
+</ul>
+</div>
+<script type="text/javascript" src="{siteurl($siteid)}/statics/mo/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="{JS_PATH}layer/layer.js"></script>
+<script type="text/javascript" src="{siteurl($siteid)}/statics/mo/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+    function w_my_video(url){
+        layer.open({
+            skin: 'demo-class',
+            type: 2,
+            title: '幸福指南针',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['100%', '548px'],
+            content: url //iframe的url
+        });
+    }
+$(document).ready(function(){
+	$('.flexslider').flexslider({
+		directionNav: true,
+		pauseOnAction: false
+	});
+});
+</script>
+<script type="text/javascript" src="{siteurl($siteid)}/statics/mo/js/fan1.js"></script>
+<script type="text/javascript" src="{siteurl($siteid)}/statics/mo/js/jquery.SuperSlide.2.1.1.js"></script>
+<div class="wrap">
+<dl class="index-title">
+<dt>全方位的四大服务</dt>
+<dd>让您的爱情更加完美</dd>
+</dl>
+<dl class="index-service">
+<dt><a class="a1" href="index.php?m=mobile&a=lists&catid=10"><img src="/statics/mo/images/a1.png" /></a><a class="a2" href="index.php?m=mobile&a=lists&catid=9"><img src="/statics/mo/images/a2.png" /></a><a class="a3" href="index.php?m=mobile&a=lists&catid=11"><img src="/statics/mo/images/a3.png" /></a><a class="a4" href="index.php?m=mobile&a=lists&catid=12"><img src="/statics/mo/images/a4.png" /></a></dt>
+<h3>将学员自身状况和专家专长有机结合<br/>积极为学员提供具有针对性和个性化的服务</h3>
+<dd></dd>
+</dl>
+<dl class="index-title">
+<dt>专家团队</dt>
+<dd>研究的心理学专家、情商培训师、婚姻家庭维权律师</dd>
+</dl>
+<div class="index-team">
+<div id="kinMaxShow1">
+<div class="index-team_list">
+<ul>
+{pc:mobile action="lists" catid="17" num="12" order="id DESC" return="info"}
+{loop $info $i}
+<li><a href="index.php?m=mobile&c=index&a=show&catid={$i[catid]}&id={$i[id]}"><img src="{$i[thumb]}" width="150" height="180"/>
+<dt>{$i['title']}</dt>
+<dd>{$i[description]}...</dd>
+</a>
+<p><a href="index.php?m=mobile&c=index&a=show&catid={$i[catid]}&id={$i[id]}">查看更多+</a></p>
+</li>
+{/loop}
+{/pc}
+</ul>
+</div>
+</div>
+<div class="clearfix"></div>
+<a class="index-team_left" id="prev"></a> <a class="index-team_right" id="next"></a>
+<div class="div_clear"></div>
+</div>
+<script type="text/javascript" src="{siteurl($siteid)}/statics/mo/js/jcarousellite.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#kinMaxShow1').jCarouselLite({
+		btnPrev: '#prev',
+		btnNext: '#next',
+		visible: 2,
+		vertical: false,
+		auto: 1500,
+   		speed: 800
+	});
+})
+</script>
+<dl class="index-title">
+<dt>服务流程</dt>
+<dd>我们的服务只为您，你的满意是我们最大的心愿</dd>
+</dl>
+<h3 class="liucheng"></h3>
+<div class="newcases">
+<div class="newcase_top">
+<h3>成功案例</h3>
+<div class="newcst_righ fr">
+<div class="tabsb">
+<ul>
+<li id="zzjssb1" onmouseover="settab_zzjssb('zzjssb',1,5)" class="on_zzjssb flipmenu_box fristtav">恋爱</li><span>|</span>
+<li id="zzjssb2" onmouseover="settab_zzjssb('zzjssb',2,5)" class="flipmenu_box marleft">婚姻</li><span>|</span>
+<li id="zzjssb3" onmouseover="settab_zzjssb('zzjssb',3,5)" class="flipmenu_box marleft">小三</li><span>|</span>
+<li id="zzjssb4" onmouseover="settab_zzjssb('zzjssb',4,5)" class="flipmenu_box marleft">出轨</li><span>|</span>
+<li id="zzjssb5" onmouseover="settab_zzjssb('zzjssb',5,5)" class="flipmenu_box fl_frs">经典策略</li>
+</ul>
+<div class="div_clear"></div>
+</div>
+</div>
+<div class="div_clear"></div>
+</div>
+<div class="newcase_boo">
+<ul>
+<div class="listsb">
+<div id="zzjssb_zzjssb1">
+{pc:mobile action="lists" catid="22" num="4" order="id DESC" return="info"}
+{loop $info $i}
+<li><a href="index.php?m=mobile&c=index&a=show&catid={$i[catid]}&id={$i[id]}"><div><img src="{$i[thumb]}" width="150" height="160" alt="{$i['title']}"></div></a></li>
+{/loop}
+{/pc}
+<div class="div_clear"></div>
+</div>
+<div id="zzjssb_zzjssb2" style="display:none;">
+{pc:mobile action="lists" catid="23" num="4" order="id DESC" return="info"}
+{loop $info $i}
+<li><a href="index.php?m=mobile&c=index&a=show&catid={$i[catid]}&id={$i[id]}"><div><img src="{$i[thumb]}" width="150" height="160" alt="{$i['title']}"></div></a></li>
+{/loop}
+{/pc}
+<div class="div_clear"></div>
+</div>
+<div id="zzjssb_zzjssb3" style="display:none;">
+{pc:mobile action="lists" catid="24" num="4" order="id DESC" return="info"}
+{loop $info $i}
+<li><a href="index.php?m=mobile&c=index&a=show&catid={$i[catid]}&id={$i[id]}"><div><img src="{$i[thumb]}" width="150" height="160" alt="{$i['title']}"></div></a></li>
+{/loop}
+{/pc}
+<div class="div_clear"></div>
+</div>
+<div id="zzjssb_zzjssb4" style="display:none;">
+{pc:mobile action="lists" catid="25" num="4" order="id DESC" return="info"}
+{loop $info $i}
+<li><a href="index.php?m=mobile&c=index&a=show&catid={$i[catid]}&id={$i[id]}"><div><img src="{$i[thumb]}" width="150" height="160" alt="{$i['title']}"></div></a></li>
+{/loop}
+{/pc}
+<div class="div_clear"></div>
+</div>
+<div id="zzjssb_zzjssb5" style="display:none;">
+{pc:mobile action="lists" catid="26" num="4" order="id DESC" return="info"}
+{loop $info $i}
+<li><a href="index.php?m=mobile&c=index&a=show&catid={$i[catid]}&id={$i[id]}"><div><img src="{$i[thumb]}" width="150" height="160" alt="{$i['title']}"></div></a></li>
+{/loop}
+{/pc}
+<div class="div_clear"></div>
+</div>
+</div>
+<div class="div_clear"></div>
+</ul>
+</div>
+</div>
+<!--end case-->
+<div class="index-news">
+<div class="hd"><ul><li>恋爱专区</li>|<li>婚姻家庭</li>|<li>反小三联盟</li>|<li>智慧妈妈社区</li></ul></div>
+<div class="bd">
+<ul>
+{pc:get sql="select * from ailianlove_guestbook where passed=1 and leixing=1 order by id desc" return="data" num="6"}
+{loop $data $r}
+<li><a href="index.php?m=mobile&a=page&catid=36#faq-{$r[id]}">{$r[content]}</a></li>
+{/loop}
+{/pc}
+</ul>
+<ul>
+{pc:get sql="select * from ailianlove_guestbook where passed=1 and leixing=2 order by id desc" return="data" num="6"}
+{loop $data $r}
+<li><a href="index.php?m=mobile&a=page&catid=37#faq-{$r[id]}">{$r[content]}</a></li>
+{/loop}
+{/pc}
+</ul>
+<ul>
+{pc:get sql="select * from ailianlove_guestbook where passed=1 and leixing=3 order by id desc" return="data" num="6"}
+{loop $data $r}
+<li><a href="index.php?m=mobile&a=page&catid=38#faq-{$r[id]}">{$r[content]}</a></li>
+{/loop}
+{/pc}
+</ul>
+<ul>
+{pc:get sql="select * from ailianlove_guestbook where passed=1 and leixing=4 order by id desc" return="data" num="6"}
+{loop $data $r}
+<li><a href="index.php?m=mobile&a=page&catid=39#faq-{$r[id]}">{$r[content]}</a></li>
+{/loop}
+{/pc}
+</ul>
+</div>
+</div>
+<script>jQuery(".index-news").slide({});</script>
+    <a onclick="w_my_video('http://m.hongpoo.com/shipin/znz.mp4')" href="javascript:">视频</a>
+<!--end news-->
+<div class="index-links">
+{pc:link action="type_list" siteid="$siteid" typeid="54" linktype="1" order="listorder DESC" num="8" return="pic_link"}
+{loop $pic_link $v}
+<li><a href="{$v[url]}" rel="nofollow" target="_blank"><img src="{$v[logo]}" alt="{$v[name]}"></a></li>
+{/loop}
+{/pc}
+</div>
+<!--end links-->
+</div>
+
+
+{template "mobile","footer"}

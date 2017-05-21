@@ -1,0 +1,33 @@
+{template "content","header"}
+<div class="banner"></div>
+<div class="wrap">
+  <div class="main-wrap">
+    <div class="main-left">
+      <h3>{if $parentid}{$CATEGORYS[$parentid][catname]}{else}{$CATEGORYS[$catid][catname]}{/if}</h3>
+      <ul>
+{if $parentid}
+{pc:content action="category" catid="$parentid" num="6" siteid="$siteid" order="listorder ASC"}
+{loop $data $r}
+<li{if $catid==$r[catid] || $parentid==$r[catid]} class="current"{/if}><a href="{$r[url]}" title="{$r[catname]}">{$r[catname]}</a></li>
+{/loop}
+{/pc}
+{else}
+<li class="current"><a href="{$CATEGORYS[$catid][url]}" title="{$CATEGORYS[$catid][catname]}">{$CATEGORYS[$catid][catname]}</a></li>
+{/if}
+      </ul>
+    </div>
+    <div class="main-right">
+      <h3 class="main-right_tit">{$CATEGORYS[$catid][catname]}<span></span></h3>
+      <ul class="list_picture">
+{pc:content action="lists" catid="$catid" num="20" order="listorder DESC" page="$page"}
+{loop $data $r}
+<li class="list_picture-{$n}"><a href="{$r[url]}" title="{$r[title]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/>{$r[title]}</a></li>
+{/loop}
+{/pc}
+      </ul>
+      <div class="clearfix"></div>
+      {if $pages}<div class="pagenav">{$pages}</div>{/if}
+    </div>
+  </div>
+</div>
+{template "content","footer"}

@@ -1,0 +1,492 @@
+{template "content","header"}
+<div class="flexslider">
+  <ul class="slides">
+{pc:get sql="SELECT setting FROM ailianlove_poster WHERE spaceid = 1 AND type='images' AND disabled=0 ORDER BY listorder ASC" num="6"}
+{loop $data $r}
+<?php eval("$narry = $r[setting];");?>
+<li style="background:url({$narry[1][imageurl]}) 50% 0 no-repeat;"></li>
+{/loop}
+{/pc}
+  </ul>
+</div>
+<script type="text/javascript" src="{siteurl($siteid)}/statics/fst/js/jquery.flexslider-min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.flexslider').flexslider({
+		//slideshowSpeed: 5000, //展示时间间隔ms
+		//animationSpeed: 400, //滚动时间ms
+		directionNav: true,
+		pauseOnAction: false
+	});
+});
+</script>
+<!--三个类&今日专家&会员中心-->
+<div class="wrap floor1">
+  <div class="floor1-left">
+{loop subcat(8) $v}
+{php if($v[catid]==11 || $v[catid]==12 || $v[catid]==13) continue;}
+<ul>
+<dt><span><a href="{$CATEGORYS[$v[catid]][url]}" title="查看更多">{$CATEGORYS[$v[catid]][catname]}</a></span></dt>
+<dl>
+{pc:content action="lists" catid="$v[catid]" num="7" order="listorder DESC"}
+{loop $data $r}
+<li><a href="{$r[url]}">{$r[title]}</a></li>
+{/loop}
+{/pc}
+</dl>
+</ul>
+{/loop}
+<ul class="last">
+<dt><span><a href="{$CATEGORYS[13][url]}" title="查看更多">{$CATEGORYS[13][catname]}</a></span></dt>
+<dl>
+{pc:content action="lists" catid="13" num="7" order="listorder DESC"}
+{loop $data $r}
+<li><a href="{$r[url]}">{$r[title]}</a></li>
+{/loop}
+{/pc}
+</dl>
+</ul>
+  </div>
+  <div class="floor1-right">
+{pc:content action="position" posid="2" order="id DESC" num="1"}
+{loop $data $r}
+    <dl><a href="{$r[url]}">
+      <img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/>
+      <dt>{str_cut($r[description],70)}</dt></a>
+      <dd><a class="a1" href="{$CATEGORYS[42][url]}">在线提问</a><a class="a2" href="tencent://message/?uin={$SITES[$siteid]['my_qq01']}&Site={siteurl($siteid)}&Menu=yes">免费咨询</a></dd>
+    </dl>
+{/loop}
+{/pc}
+    <a class="huiyuan" href="index.php?m=member"></a> </div>
+</div>
+<!--专业团队&公司资质-->
+<div class="floor2">
+  <div class="wrap"> 
+    <script type="text/javascript" src="{siteurl($siteid)}/statics/fst/js/jquery.SuperSlide.2.1.1.js"></script>
+    <div class="floor2-left">
+      <div style="height:26px"></div>
+      <h3><a href="{$CATEGORYS[17][url]}" title="查看更多">专业团队</a></h3>
+      <div class="hd">
+        <ul>
+          <li>首席</li><li>资深</li><li>顾问</li><li class="last">律师</li>
+        </ul>
+      </div>
+      <div class="bd">
+{loop subcat(17) $v}
+{pc:content action="lists" catid="$v[catid]" num="3" order="listorder DESC"}
+<ul>
+<table width="" border="0">
+  <tr>
+{loop $data $r}
+   <td width="202"><li>
+  <dt><a href="{$r[url]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/></a></dt>
+  <dd><a class="a1" href="{$r[url]}">{$CATEGORYS[$v[catid]][catname]}</a><a class="a2" href="tencent://message/?uin={$SITES[$siteid]['my_qq01']}&Site={siteurl($siteid)}&Menu=yes">在线咨询</a></dd>
+</li></td>
+{/loop}
+  </tr>
+</table>
+</ul>
+{/pc}
+{/loop}
+      </div>
+    </div>
+    <script type="text/javascript">jQuery(".floor2-left").slide({effect:"leftLoop",autoPlay:false,delayTime:1000});</script>
+<!--公司资质-->
+  <div class="floor2-right">
+    <div class="hd">
+      <ul>
+{pc:content action="lists" catid="51" num="6" order="listorder DESC"}
+{loop $data $r}
+<li>{$n}</li>
+{/loop}
+{/pc}
+      </ul>
+    </div>
+    <div class="bd">
+      <ul>
+{pc:content action="lists" catid="51" num="6" order="listorder DESC"}
+{loop $data $r}
+<li><a href="{$r[url]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}" /></a></li>
+{/loop}
+{/pc}
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript">jQuery(".floor2-right").slide({mainCell:".bd ul",autoPlay:true});</script>
+  </div>
+</div>
+<!--首页广告01-->
+{pc:get sql="SELECT setting FROM ailianlove_poster WHERE spaceid = 2 AND type='images' AND disabled=0 ORDER BY id ASC" num="4"}
+{loop $data $r}
+<?php eval("\$narry = $r[setting];");?>
+{if $n==1}
+<div class="floor-ads"><a href="{$narry[1][linkurl]}" target="_blank"><img src="{$narry[1][imageurl]}" alt="{$narry[1][alt]}"/></a></div>
+{/if}
+{/loop}
+{/pc}
+<!--成功案例&资质荣誉-->
+<div class="floor3 wrap">
+  <div class="floor3-left">
+    <h3><span><a href="{$CATEGORYS[21][url]}" title="查看更多">成功案例</a></span></h3>
+    <div class="hd">
+      <ul>
+        <li>{$CATEGORYS[22][catname]}</li><li>{$CATEGORYS[23][catname]}</li><li>{$CATEGORYS[24][catname]}</li><li>{$CATEGORYS[25][catname]}</li><li class="last">{$CATEGORYS[26][catname]}</li><a class="morecase" href="{$CATEGORYS[21][url]}">更多>></a>
+      </ul>
+    </div>
+    <div class="bd">
+{loop subcat(21) $v}
+{pc:content action="lists" catid="$v[catid]" num="3" order="listorder DESC"}
+<ul>
+<table width="" border="0">
+  <tr>
+{loop $data $r}
+<td width="216"><li><a href="{$r[url]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}" /></a></li></td>
+{/loop}
+</tr>
+</table>
+</ul>
+{/pc}
+{/loop}
+    </div>
+  </div>
+  <script type="text/javascript">jQuery(".floor3-left").slide({effect:"leftLoop",autoPlay:false,delayTime:1000});</script>
+  <div class="floor3-right">
+    <div class="hd">
+      <ul>
+{pc:content action="lists" catid="33" num="6" order="listorder DESC"}
+{loop $data $r}
+<li>{$n}</li>
+{/loop}
+{/pc}
+      </ul>
+    </div>
+    <div class="bd">
+      <ul>
+{pc:content action="lists" catid="33" num="6" order="listorder DESC"}
+{loop $data $r}
+<li><a href="{$r[url]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}" /></a></li>
+{/loop}
+{/pc}
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript">jQuery(".floor3-right").slide({mainCell:".bd ul",autoPlay:true});</script>
+</div>
+<!--首页广告02-->
+{pc:get sql="SELECT setting FROM ailianlove_poster WHERE spaceid = 2 AND type='images' AND disabled=0 ORDER BY id ASC" num="4"}
+{loop $data $r}
+<?php eval("\$narry = $r[setting];");?>
+{if $n==2}
+<div class="floor-ads"><a href="{$narry[1][linkurl]}" target="_blank"><img src="{$narry[1][imageurl]}" alt="{$narry[1][alt]}"/></a></div>
+{/if}
+{/loop}
+{/pc}
+<!--解决方案&投票&统计-->
+<div class="floor4 wrap">
+  <dt class="floor4-left_tit"><span><a href="{$CATEGORYS[47][url]}" title="查看更多">解决方案</a></span></dt>
+  <div class="floor4-left">
+<table width="647" border="0">
+  <tr>
+    <td width="216"><ul>
+{pc:content action="lists" catid="48" num="7" order="listorder DESC"}
+<h3><a style="color:#2b1aa9" href="{$CATEGORYS[48][url]}" title="查看更多">{$CATEGORYS[48][catname]}</a></h3>
+{loop $data $r}
+<li><a href="{$r[url]}">· {$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul></td>
+    <td width="216"><ul>
+{pc:content action="lists" catid="49" num="7" order="listorder DESC"}
+<h3><a style="color:#46cbe8" href="{$CATEGORYS[49][url]}" title="查看更多">{$CATEGORYS[49][catname]}</a></h3>
+{loop $data $r}
+<li><a href="{$r[url]}">· {$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul></td>
+    <td width="216"><ul>
+{pc:content action="lists" catid="50" num="7" order="listorder DESC"}
+<h3><a style="color:#868a29" href="{$CATEGORYS[50][url]}" title="查看更多">{$CATEGORYS[50][catname]}</a></h3>
+{loop $data $r}
+<li><a href="{$r[url]}">· {$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul></td>
+  </tr>
+  <tr>
+    <td width="216"><ul>
+{pc:content action="lists" catid="14" num="7" order="listorder DESC"}
+<h3><a style="color:#221abc" href="{$CATEGORYS[14][url]}" title="查看更多">{$CATEGORYS[14][catname]}</a></h3>
+{loop $data $r}
+<li><a href="{$r[url]}">· {$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul></td>
+    <td width="216"><ul>
+{pc:content action="lists" catid="15" num="7" order="listorder DESC"}
+<h3><a style="color:#af5bc8" href="{$CATEGORYS[15][url]}" title="查看更多">{$CATEGORYS[15][catname]}</a></h3>
+{loop $data $r}
+<li><a href="{$r[url]}">· {$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul></td>
+    <td width="216"><ul>
+{pc:content action="lists" catid="16" num="7" order="listorder DESC"}
+<h3><a style="color:#cc6c97" href="{$CATEGORYS[16][url]}" title="查看更多">{$CATEGORYS[16][catname]}</a></h3>
+{loop $data $r}
+<li><a href="{$r[url]}">· {$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul></td>
+  </tr>
+</table>
+  </div>
+  <div class="floor4-right">
+    <div class="floor4-right_top">
+      <h3>婚姻情感调查</h3>
+      <script language="javascript" src="index.php?m=vote&c=index&a=show&action=js&subjectid=1&type=3"></script>
+    </div>
+<div class="floor4-right_bottom">
+<dt>截止
+<script>
+var day="";
+var month="";
+var ampm="";
+var ampmhour="";
+var myweekday="";
+var year="";
+mydate=new Date();
+myweekday=mydate.getDay();
+mymonth=mydate.getMonth()+1;
+myday= mydate.getDate();
+myyear= mydate.getYear();
+year=(myyear > 200) ? myyear : 1900 + myyear;
+if(myweekday == 0)
+weekday=" 星期日 ";
+else if(myweekday == 1)
+weekday=" 星期一 ";
+else if(myweekday == 2)
+weekday=" 星期二 ";
+else if(myweekday == 3)
+weekday=" 星期三 ";
+else if(myweekday == 4)
+weekday=" 星期四 ";
+else if(myweekday == 5)
+weekday=" 星期五 ";
+else if(myweekday == 6)
+weekday=" 星期六 ";
+document.write("<em>"+year+"</em>年<em>"+mymonth+"</em>月<em>"+myday+"</em>日");
+</script> 
+<script language=Javascript1.2> 
+<!--
+//以下是顯示時間
+var tags_before_clock = ""
+var tags_after_clock = ""
+if(navigator.appName == "Netscape") {
+document.write('<layer id="clock"></layer>');
+}
+if (navigator.appVersion.indexOf("MSIE") != -1){
+document.write('<span id="clock"></span>');
+}
+function showclock()
+{ 
+var date = new Date();
+var hour = date.getHours();
+var min = date.getMinutes(); 
+var sec = date.getSeconds();
+var col = ":";
+var spc = " ";
+var apm;
+if ( hour >12 ) 
+{ 
+apm="P.M.";
+hour=hour-12;
+}
+else 
+{
+apm="A.M.";
+}
+if (hour == 0) hour=12;
+if (min<=9) min="0"+min;
+if (sec<=9) sec="0"+sec;
+if(navigator.appName == "Netscape") 
+{
+document.clock.document.write(tags_before_clock
++hour+col+min+col+sec+spc+tags_after_clock);
+document.clock.document.close();
+}
+if (navigator.appVersion.indexOf("MSIE") != -1)
+{
+clock.innerHTML = tags_before_clock+hour
++col+min+col+sec;
+}
+}
+setInterval("showclock()",1000);
+//-->
+function clock(){
+   var nowtime=new Date();
+   var flag="";
+   var hours=nowtime.getHours();
+   if(hours>12){
+	   hours-=12;
+	   flag="";
+   }
+   hours=hours>9?hours:"0"+hours;
+   var minutes=nowtime.getMinutes();
+   minutes=minutes>9?minutes:"0"+minutes;
+   var seconds=nowtime.getSeconds();
+   seconds=seconds>9?seconds:"0"+seconds;
+   var disptime="<em>"+hours+"</em>时<em>"+minutes+"</em>分"+flag;
+   document.getElementById("clock").innerHTML=disptime;
+   setTimeout("clock()",1000);
+}
+clock();
+</script>
+</dt>
+      <h4>已成功挽回</h4>
+      <dd>
+{pc:get sql="SELECT count(*) as count FROM ailianlove_picture WHERE catid in (22,23,24,25,26)" cache="3600" return="data"}
+{loop $data $v}
+<?php
+$i=7666;
+$zongshu=$v[count]+$i;
+$sum_arr = array();
+(int)$number = $zongshu;
+for($i=strlen($number);$i>0;$i--){
+        $sum_arr[] = substr($number,$i-1,1);
+}
+if ($number < 10) echo "<em>0</em><em>0</em><em>0</em><em>0</em><em>$sum_arr[0]</em>";
+elseif ($number < 100) echo "<em>0</em><em>0</em><em>0</em><em>$sum_arr[1]</em><em>$sum_arr[0]</em>";
+elseif ($number < 1000) echo "<em>0</em><em>0</em><em>$sum_arr[2]</em><em>$sum_arr[1]</em><em>$sum_arr[0]</em>";
+elseif ($number < 10000) echo "<em>0</em><em>$sum_arr[3]</em><em>$sum_arr[2]</em><em>$sum_arr[1]</em><em>$sum_arr[0]</em>";
+elseif ($number < 100000) echo "<em>$sum_arr[4]</em><em>$sum_arr[3]</em><em>$sum_arr[2]</em><em>$sum_arr[1]</em><em>$sum_arr[0]</em>";
+?>
+{/loop}
+{/pc}
+例</dd>
+    </div>
+  </div>
+</div>
+<!--首页广告03-->
+{pc:get sql="SELECT setting FROM ailianlove_poster WHERE spaceid = 2 AND type='images' AND disabled=0 ORDER BY id ASC" num="4"}
+{loop $data $r}
+<?php eval("\$narry = $r[setting];");?>
+{if $n==3}
+<div class="floor-ads"><a href="{$narry[1][linkurl]}" target="_blank"><img src="{$narry[1][imageurl]}" alt="{$narry[1][alt]}"/></a></div>
+{/if}
+{/loop}
+{/pc}
+<!--情感部落&情感测试-->
+<div class="floor5 wrap">
+  <!--情感部落-->
+  <div class="floor5-left">
+    <h3>{$CATEGORYS[35][catname]}</h3>
+<div class="hd">
+<ul>
+{loop subcat(35) $v}
+{php if($v[catid]==41) continue;}
+<li>{$CATEGORYS[$v[catid]][catname]}</li>
+{/loop}
+</ul>
+</div>
+<div class="bd">
+{pc:get sql="select * from ailianlove_guestbook where passed=1 and leixing=1 order by id desc" return="data" num="6"}
+<ul>
+{loop $data $r}
+<li><a href="{$CATEGORYS[36][url]}#faq-{$r[id]}">{$r[content]}</a></li>
+{/loop}
+</ul>
+{/pc}
+{pc:get sql="select * from ailianlove_guestbook where passed=1 and leixing=2 order by id desc" return="data" num="6"}
+<ul>
+{loop $data $r}
+<li><a href="{$CATEGORYS[37][url]}#faq-{$r[id]}">{$r[content]}</a></li>
+{/loop}
+</ul>
+{/pc}
+{pc:get sql="select * from ailianlove_guestbook where passed=1 and leixing=3 order by id desc" return="data" num="6"}
+<ul>
+{loop $data $r}
+<li><a href="{$CATEGORYS[38][url]}#faq-{$r[id]}">{$r[content]}</a></li>
+{/loop}
+</ul>
+{/pc}
+{pc:get sql="select * from ailianlove_guestbook where passed=1 and leixing=4 order by id desc" return="data" num="6"}
+<ul>
+{loop $data $r}
+<li><a href="{$CATEGORYS[39][url]}#faq-{$r[id]}">{$r[content]}</a></li>
+{/loop}
+</ul>
+{/pc}
+</div>
+  </div>
+  <!--情感测试-->
+  <div class="floor5-right">
+    <h3>{$CATEGORYS[40][catname]}</h3>
+    <ul>
+{pc:content action="lists" catid="40" num="7" order="listorder DESC"}
+{loop $data $r}
+<li><a href="{$CATEGORYS[40][url]}">· {$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">jQuery(".floor5").slide({effect:"topLoop",autoPlay:true,delayTime:1000});</script>
+<!--爱恋图库-->
+<div class="floor6 wrap">
+  <h3>{$CATEGORYS[41][catname]}</h3>
+<div class="kinMaxShow1-wrap1">
+<a id="prev"></a>
+<a id="next"></a>
+<div class="kinMaxShow1-wrap">
+<div id="kinMaxShow1">
+  <ul>
+{pc:content action="lists" catid="41" num="12" order="listorder DESC"}
+{loop $data $r}
+<li><a href="{$r[url]}" title="{$r[title]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}" />{$r[title]}</a></li>
+{/loop}
+{/pc}
+  </ul>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript" src="{siteurl($siteid)}/statics/fst/js/jcarousellite.js"></script> 
+<script type="text/javascript">
+$(function(){
+	$('#kinMaxShow1').jCarouselLite({
+		btnPrev: '#prev',
+		btnNext: '#next',
+		visible: 6,
+		vertical: false,
+		auto:false,
+   		speed: 800
+	});
+})
+</script>
+<!--媒体报道&合作单位-->
+<div class="floor7 wrap">
+  <div class="hd">
+    <ul>
+      <li style="border-right:2px solid #999">媒体报道</li><li>合作单位</li>
+    </ul>
+  </div>
+  <div class="bd">
+    <ul>
+{pc:link action="type_list" siteid="$siteid" typeid="54" linktype="1" order="listorder DESC" num="8" return="pic_link"}
+{loop $pic_link $v}
+<li class="link-1{$n}"><a href="{$v['url']}" rel="nofollow" target="_blank"><img src="{$v[logo]}" alt="{$v['name']}"/></a></li>
+{/loop}
+{/pc}
+    </ul>
+    <ul>
+{pc:link action="type_list" siteid="$siteid" typeid="55" linktype="1" order="listorder DESC" num="8" return="pic_link"}
+{loop $pic_link $v}
+<li class="link-2{$n}"><a href="{$v['url']}" rel="nofollow" target="_blank"><img src="{$v[logo]}" alt="{$v['name']}"/></a></li>
+{/loop}
+{/pc}
+    </ul>
+  </div>
+</div>
+<script type="text/javascript">jQuery(".floor7").slide({effect:"leftLoop",autoPlay:false,delayTime:1000});</script>
+{template "content","footer"}

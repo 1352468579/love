@@ -1,0 +1,33 @@
+{template "content","header"}
+<div class="banner"></div>
+<div class="wrap">
+  <div class="main-wrap">
+    <div class="main-left">
+      <h3>会员专区</h3>
+      <ul>
+<li><a href="index.php?m=member&c=index&a=gai_intro">会员信息</a></li>
+<li{if $catid==40} class="current"{/if}><a href="index.php?m=content&c=index&a=lists&catid=40">情感测试</a></li>
+<li{if $catid==43} class="current"{/if}><a href="index.php?m=content&c=index&a=lists&catid=43">资料分享</a></li>
+<li{if $catid==44} class="current"{/if}><a href="index.php?m=content&c=index&a=lists&catid=44">题库下载</a></li>
+<li{if $catid==45} class="current"{/if}><a href="index.php?m=content&c=index&a=lists&catid=45">电子书籍</a></li>
+<li><a href="index.php?m=member&c=index&a=logout">退出登录</a></li>
+      </ul>
+    </div>
+    <div class="main-right">
+      <h3 class="main-right_tit">{$CATEGORYS[$catid][catname]}<span></span></h3>
+      <ul class="list_team">
+{pc:content action="lists" catid="$catid" num="6" order="listorder DESC" page="$page"}
+{loop $data $r}
+<li class="list_team-{$n}"><a href="{$r[url]}" title="{$r[title]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/>
+  <dt>{$r[title]}</dt>
+  <dd>{str_cut($r[description],133)}</dd>
+  <span>了解更多</span></a></li>
+{/loop}
+{/pc}
+      </ul>
+      <div class="clearfix"></div>
+      {if $pages}<div class="pagenav">{$pages}</div>{/if}
+    </div>
+  </div>
+</div>
+{template "content","footer"}

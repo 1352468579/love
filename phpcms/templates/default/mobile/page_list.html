@@ -1,0 +1,19 @@
+{template "mobile","header"}
+<div class="wrap">
+<div class="fast-links"><a class="l1" href="javascript:history.back(-1);"></a><a class="l2" href="index.php?m=mobile"></a></div>
+<?php $this_url = str_replace("index.php?","index.php?m=mobile&c=index",page_pos($catid))?>
+<?php $this_url = str_replace("http://m.","http://www.",$this_url)?>
+<div class="now">{$this_url}正文</div>
+<div class="news-list news-list2">
+{loop subpage($catid)  $s}
+<dl><a href="{$s['url']}">
+<dd>
+<h3>{$s['catname']}</h3>
+<p>{$s[description]}...</p>
+</dd></a>
+</dl>
+<hr/>
+{/loop}
+</div>
+</div>
+{template "mobile","footer"}

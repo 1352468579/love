@@ -1,0 +1,21 @@
+{template "mobile","header"}
+<div class="wrap">
+<div class="fast-links"><a class="l1" href="javascript:history.back(-1);"></a><a class="l2" href="index.php?m=mobile"></a></div>
+<div class="now">{list_pos($catid)}正文</div>
+<div class="news-list">
+{pc:mobile action="lists" catid="$catid" num="6" order="id DESC" return="info" page="$page"}
+{loop $info $i}
+<dl>
+<a href="{show_url($i[catid],$i[id])}">
+<dt><img src="{$i['thumb']}"/></dt>
+<dd>
+<h3>{$i['title']}</h3>
+<p>{$i[description]}...</p>
+</dd></a>
+</dl><hr/>
+{/loop}
+{/pc}
+</div>
+<div class="pagenav">{$pages}</div>
+</div>
+{template "mobile","footer"}

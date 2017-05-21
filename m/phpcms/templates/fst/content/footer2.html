@@ -1,0 +1,39 @@
+﻿<div class="clearfix"></div>
+<div class="footer-wrap">
+  <div class="footer-copy">Copyright © 2016 {pc:get sql="SELECT * FROM ailianlove_site where siteid=1"}
+{loop $data $key $val}
+{$val[name]}
+{/loop}
+{/pc} 版权所有 {pc:get sql="SELECT * FROM ailianlove_site where siteid=1"}
+{loop $data $key $val}
+{$val[my_icp]}
+{/loop}
+{/pc} 技术支持：<a href="http://www.028fast.com" target="_blank">凡思特科技</a></div>
+  <div class="footer-bottom">
+    <div class="wrap">地址：{pc:get sql="SELECT * FROM ailianlove_site where siteid=1"}
+{loop $data $key $val}
+{$val[my_address]}
+{/loop}
+{/pc} 电话：{pc:get sql="SELECT * FROM ailianlove_site where siteid=1"}
+{loop $data $key $val}
+{$val[my_tel]}
+{/loop}
+{/pc} 服务项目：婚恋复合 · 婚恋危机处理 · 小三分离 · 长期关系处理 · 情感巩固</div>
+  </div>
+</div>
+<!-- ailianlove.com Baidu tongji analytics -->
+<script>
+var _hmt = _hmt || [];
+(function() {
+var hm = document.createElement("script");
+hm.src = "https://hm.baidu.com/hm.js?15d8350ba7ebaf4fb1a67a5e08fe209e";
+var s = document.getElementsByTagName("script")[0];
+s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F67d5804f9c5d08d00a55a24b6da69d56' type='text/javascript'%3E%3C/script%3E"));
+</script>
+</body>
+</html>

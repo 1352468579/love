@@ -1,0 +1,28 @@
+{template "content","header-v"}
+<link href="{CSS_PATH}vote.css" rel="stylesheet" type="text/css" />
+<!--main-->
+<div style="position:relative;width:1000px;left:50%;margin-left:-500px">
+<div class="vote_result">
+    	<div class="tit"><span class="r">总票数：<strong>{$vote_data['total']}</strong></span><h5>{$subject}</h5></div>
+        <div class="c_box" style="overflow:hidden;display:block;">
+        	<table width="100%" border="1" cellspacing="0" cellpadding="0">
+        	{loop $options $r}
+       		{$i++}
+       		{if $vote_data['total']==0 }
+       		{php $per=0;}
+       		{else}
+       		{php $per=intval($vote_data[$r['optionid']]/$vote_data['total']*100);}
+       		{/if}
+              <tr>
+              	<th>{$i}</th>
+                <td class="tp_tit">{$r['option']}</td>
+                <td class="tdcol3">{$per} %</td>
+                <td><div><img src="statics/images/vote/tit_cs.jpg" width="{$per}%" /></div></td>
+                <td class="tdcol3">{php echo $vote_data[$r['optionid']]==''? 0:$vote_data[$r['optionid']]} 票</td>
+              </tr>
+            {/loop}  
+            </table>
+        </div>
+    </div>   
+</div>
+{template "content","footer2"}

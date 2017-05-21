@@ -1,0 +1,66 @@
+<!--详情页专用 右侧 开始-->
+<div class="show-right">
+  <div class="show-right_tel"><span>{$SITES[$siteid][my_tel]}</span></div>
+  <div class="show-right_zj">
+{pc:content action="position" posid="2" order="id DESC" num="1"}
+{loop $data $r}
+    <dl><a href="{$r[url]}">
+      <img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/>
+      <dt>{str_cut($r[description],70)}</dt></a>
+      <dd><a class="a1" href="{$CATEGORYS[42][url]}">在线提问</a><a class="a2" href="http://byt.zoosnet.net/LR/Chatpre.aspx?id=BYT80154713&lng=cn">免费咨询</a></dd>
+    </dl>
+{/loop}
+{/pc}
+  </div>
+  <div class="hot-faq">
+    <h3>热门提问</h3>
+    <ul>
+{pc:get sql="select * from ailianlove_guestbook where passed=1 order by id desc" return="data" num="7"}
+{loop $data $r}
+<li> <a href="{if $r[leixing]==1}{$CATEGORYS[36][url]}{elseif $r[leixing]==2}{$CATEGORYS[37][url]}{elseif $r[leixing]==3}{$CATEGORYS[38][url]}{elseif $r[leixing]==4}{$CATEGORYS[39][url]}{/if}#faq-{$r[id]}">· {$r[content]}</a> </li>
+{/loop}
+{/pc}
+    </ul>
+  </div>
+  <div class="hot-faq hot-case">
+    <h3>经典案例</h3>
+{pc:content action="lists" catid="21" num="1" thumb="1" order="listorder DESC"}
+{loop $data $r}
+    <dl>
+      <a href="{$r[url]}" title="{$r[title]}"> <img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/>
+      <dt>{$r[title]}</dt>
+      <dd>{str_cut($r[description],80)}</dd>
+      </a>
+    </dl>
+{/loop}
+{/pc}
+    <ul>
+{pc:content action="lists" catid="21" num="8" order="listorder DESC"}
+{loop $data $r}
+<li><a href="{$r[url]}" title="{$r[title]}">· {$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul>
+  </div>
+  <div class="hot-pic">
+    <h3>热点图片</h3>
+    <ul>
+{pc:content action="lists" catid="41" num="6" order="listorder DESC"}
+{loop $data $r}
+<li> <a href="{$r[url]}" title="{$r[title]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/>{$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul>
+  </div>
+  <div class="hot-pic hot-video">
+    <h3>热门视频</h3>
+    <ul>
+{pc:content action="lists" catid="46" num="4" order="listorder DESC"}
+{loop $data $r}
+<li> <a href="{$r[url]}" title="{$r[title]}"><img src="{if $r[thumb]}{$r[thumb]}{else}{siteurl($siteid)}/statics/fst/images/nopic.jpg{/if}" alt="{$r[title]}"/>{$r[title]}</a></li>
+{/loop}
+{/pc}
+    </ul>
+  </div>
+</div>
+<!--详情页专用 右侧 结束-->

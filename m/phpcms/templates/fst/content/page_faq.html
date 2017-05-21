@@ -1,0 +1,320 @@
+{template "content","header"}
+<div class="banner"></div>
+<div class="wrap">
+  <div class="main-wrap">
+    <div class="show-left">
+      <h3 class="show-left_tit">{$CATEGORYS[$catid][catname]}<span></span></h3>
+      <dl class="article_tit">{$title}</dl>
+      <div class="content">
+<div class="page-faq">
+{if $catid==42}
+  <ul>
+<?php
+//读取用户信息
+$userid = param::get_cookie('_userid');
+if(!empty($userid)){
+$memberinfo=get_memberinfo($userid);
+}
+?>
+    <form action="{APP_PATH}index.php?m=guestbook&c=index&a=register" method="post" name="myform" id="myform">
+      <li><span><em>*</em>姓名：</span>
+        <input type="text" id="name" name="name" value="{$memberinfo['nickname']}">
+      </li>
+      <li><span><em></em>QQ：</span>
+        <input type="text" name="qq" value="">
+      </li>
+      <li><span><em></em>手机：</span>
+        <input type="text" name="phone" value="{$memberinfo['mobile']}">
+      </li>
+<!--      <li><span><em></em>邮箱：</span>
+        <input type="text" name="email" value="{$memberinfo['email']}">
+      </li>-->
+      <li><span><em>*</em>提问内容：</span>
+        <textarea id="content" name="content"></textarea>
+      </li>
+      <li><span><em>*</em>验证码：</span>
+        <input type="text" id="code" name="code"><img id='code_img' onclick='this.src=this.src+"&"+Math.random()' src='{APP_PATH}api.php?op=checkcode&code_len=4&font_size=14&width=84&height=24&font_color=&background='>
+      </li>
+      <li><span><em>&nbsp;</em></span>
+        <input type="submit" id="dosubmit" name="dosubmit" value="提交">
+      </li>
+    </form>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#dosubmit').click(function(){
+		if($('#name').val()==""){
+			alert('姓名不能为空');
+			return false;
+		}
+		else if($('#content').val()==""){
+		alert('提问内容不能为空');
+			return false;
+		}
+	});
+})
+</script>
+  </ul>
+{pc:get sql="select * from ailianlove_guestbook where passed=1 order by id desc" return="data" num="7"}
+<dl>
+{loop $data $r}
+<li id="faq-{$r[id]}">
+<p><b>问：</b>{$r[content]}</p>
+<p><b>答：</b>{$r[replycontent]}</p>
+</li>
+{/loop}
+</dl>
+{/pc}
+{/if}
+
+{if $catid==36}
+{pc:guestbook action="lists" siteid="$siteid" leixing="1" order="id desc" num="7" return="data" page="$page"}
+<dl>
+{loop $data $r}
+<li id="faq-{$r[id]}">
+<p><b>问：</b>{$r[content]}</p>
+<p><b>答：</b>{$r[replycontent]}</p>
+</li>
+{/loop}
+</dl>
+{if $pages}<div class="pagenav">{$pages}</div>{/if}
+{/pc}
+<br/>
+  <ul>
+<?php
+//读取用户信息
+$userid = param::get_cookie('_userid');
+if(!empty($userid)){
+$memberinfo=get_memberinfo($userid);
+}
+?>
+    <form action="{APP_PATH}index.php?m=guestbook&c=index&a=register" method="post" name="myform" id="myform">
+      <li><span><em>*</em>姓名：</span>
+        <input type="text" id="name" name="name" value="{$memberinfo['nickname']}">
+      </li>
+      <li><span><em></em>QQ：</span>
+        <input type="text" name="qq" value="">
+      </li>
+      <li><span><em></em>手机：</span>
+        <input type="text" name="phone" value="{$memberinfo['mobile']}">
+      </li>
+<!--      <li><span><em></em>邮箱：</span>
+        <input type="text" name="email" value="{$memberinfo['email']}">
+      </li>-->
+      <li><span><em>*</em>提问内容：</span>
+        <textarea id="content" name="content"></textarea>
+      </li>
+      <li><span><em>*</em>验证码：</span>
+        <input type="text" id="code" name="code"><img id='code_img' onclick='this.src=this.src+"&"+Math.random()' src='{APP_PATH}api.php?op=checkcode&code_len=4&font_size=14&width=84&height=24&font_color=&background='>
+      </li>
+      <li><span><em>&nbsp;</em></span>
+        <input type="submit" id="dosubmit" name="dosubmit" value="提交">
+      </li>
+    </form>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#dosubmit').click(function(){
+		if($('#name').val()==""){
+			alert('姓名不能为空');
+			return false;
+		}
+		else if($('#content').val()==""){
+		alert('提问内容不能为空');
+			return false;
+		}
+	});
+})
+</script>
+  </ul>
+{/if}
+{if $catid==37}
+{pc:guestbook action="lists" siteid="$siteid" leixing="2" order="id desc" num="7" return="data" page="$page"}
+<dl>
+{loop $data $r}
+<li id="faq-{$r[id]}">
+<p><b>问：</b>{$r[content]}</p>
+<p><b>答：</b>{$r[replycontent]}</p>
+</li>
+{/loop}
+</dl>
+{if $pages}<div class="pagenav">{$pages}</div>{/if}
+{/pc}
+<br/>
+  <ul>
+<?php
+//读取用户信息
+$userid = param::get_cookie('_userid');
+if(!empty($userid)){
+$memberinfo=get_memberinfo($userid);
+}
+?>
+    <form action="{APP_PATH}index.php?m=guestbook&c=index&a=register" method="post" name="myform" id="myform">
+      <li><span><em>*</em>姓名：</span>
+        <input type="text" id="name" name="name" value="{$memberinfo['nickname']}">
+      </li>
+      <li><span><em></em>QQ：</span>
+        <input type="text" name="qq" value="">
+      </li>
+      <li><span><em></em>手机：</span>
+        <input type="text" name="phone" value="{$memberinfo['mobile']}">
+      </li>
+<!--      <li><span><em></em>邮箱：</span>
+        <input type="text" name="email" value="{$memberinfo['email']}">
+      </li>-->
+      <li><span><em>*</em>提问内容：</span>
+        <textarea id="content" name="content"></textarea>
+      </li>
+      <li><span><em>*</em>验证码：</span>
+        <input type="text" id="code" name="code"><img id='code_img' onclick='this.src=this.src+"&"+Math.random()' src='{APP_PATH}api.php?op=checkcode&code_len=4&font_size=14&width=84&height=24&font_color=&background='>
+      </li>
+      <li><span><em>&nbsp;</em></span>
+        <input type="submit" id="dosubmit" name="dosubmit" value="提交">
+      </li>
+    </form>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#dosubmit').click(function(){
+		if($('#name').val()==""){
+			alert('姓名不能为空');
+			return false;
+		}
+		else if($('#content').val()==""){
+		alert('提问内容不能为空');
+			return false;
+		}
+	});
+})
+</script>
+  </ul>
+{/if}
+{if $catid==38}
+{pc:guestbook action="lists" siteid="$siteid" leixing="3" order="id desc" num="7" return="data" page="$page"}
+<dl>
+{loop $data $r}
+<li id="faq-{$r[id]}">
+<p><b>问：</b>{$r[content]}</p>
+<p><b>答：</b>{$r[replycontent]}</p>
+</li>
+{/loop}
+</dl>
+{if $pages}<div class="pagenav">{$pages}</div>{/if}
+{/pc}
+<br/>
+  <ul>
+<?php
+//读取用户信息
+$userid = param::get_cookie('_userid');
+if(!empty($userid)){
+$memberinfo=get_memberinfo($userid);
+}
+?>
+    <form action="{APP_PATH}index.php?m=guestbook&c=index&a=register" method="post" name="myform" id="myform">
+      <li><span><em>*</em>姓名：</span>
+        <input type="text" id="name" name="name" value="{$memberinfo['nickname']}">
+      </li>
+      <li><span><em></em>QQ：</span>
+        <input type="text" name="qq" value="">
+      </li>
+      <li><span><em></em>手机：</span>
+        <input type="text" name="phone" value="{$memberinfo['mobile']}">
+      </li>
+<!--      <li><span><em></em>邮箱：</span>
+        <input type="text" name="email" value="{$memberinfo['email']}">
+      </li>-->
+      <li><span><em>*</em>提问内容：</span>
+        <textarea id="content" name="content"></textarea>
+      </li>
+      <li><span><em>*</em>验证码：</span>
+        <input type="text" id="code" name="code"><img id='code_img' onclick='this.src=this.src+"&"+Math.random()' src='{APP_PATH}api.php?op=checkcode&code_len=4&font_size=14&width=84&height=24&font_color=&background='>
+      </li>
+      <li><span><em>&nbsp;</em></span>
+        <input type="submit" id="dosubmit" name="dosubmit" value="提交">
+      </li>
+    </form>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#dosubmit').click(function(){
+		if($('#name').val()==""){
+			alert('姓名不能为空');
+			return false;
+		}
+		else if($('#content').val()==""){
+		alert('提问内容不能为空');
+			return false;
+		}
+	});
+})
+</script>
+  </ul>
+{/if}
+{if $catid==39}
+{pc:guestbook action="lists" siteid="$siteid" leixing="4" order="id desc" num="7" return="data" page="$page"}
+<dl>
+{loop $data $r}
+<li id="faq-{$r[id]}">
+<p><b>问：</b>{$r[content]}</p>
+<p><b>答：</b>{$r[replycontent]}</p>
+</li>
+{/loop}
+</dl>
+{if $pages}<div class="pagenav">{$pages}</div>{/if}
+{/pc}
+<br/>
+  <ul>
+<?php
+//读取用户信息
+$userid = param::get_cookie('_userid');
+if(!empty($userid)){
+$memberinfo=get_memberinfo($userid);
+}
+?>
+    <form action="{APP_PATH}index.php?m=guestbook&c=index&a=register" method="post" name="myform" id="myform">
+      <li><span><em>*</em>姓名：</span>
+        <input type="text" id="name" name="name" value="{$memberinfo['nickname']}">
+      </li>
+      <li><span><em></em>QQ：</span>
+        <input type="text" name="qq" value="">
+      </li>
+      <li><span><em></em>手机：</span>
+        <input type="text" name="phone" value="{$memberinfo['mobile']}">
+      </li>
+<!--      <li><span><em></em>邮箱：</span>
+        <input type="text" name="email" value="{$memberinfo['email']}">
+      </li>-->
+      <li><span><em>*</em>提问内容：</span>
+        <textarea id="content" name="content"></textarea>
+      </li>
+      <li><span><em>*</em>验证码：</span>
+        <input type="text" id="code" name="code"><img id='code_img' onclick='this.src=this.src+"&"+Math.random()' src='{APP_PATH}api.php?op=checkcode&code_len=4&font_size=14&width=84&height=24&font_color=&background='>
+      </li>
+      <li><span><em>&nbsp;</em></span>
+        <input type="submit" id="dosubmit" name="dosubmit" value="提交">
+      </li>
+    </form>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#dosubmit').click(function(){
+		if($('#name').val()==""){
+			alert('姓名不能为空');
+			return false;
+		}
+		else if($('#content').val()==""){
+		alert('提问内容不能为空');
+			return false;
+		}
+	});
+})
+</script>
+  </ul>
+{/if}
+</div>
+      </div>
+    </div>
+    {template "content","side"}
+  </div>
+</div>
+{template "content","footer"}

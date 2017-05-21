@@ -1,0 +1,22 @@
+{template "mobile","header"}
+<div class="wrap">
+<div class="fast-links"><a class="l1" href="javascript:history.back(-1);"></a><a class="l2" href="index.php?m=mobile"></a></div>
+<?php $this_url = str_replace("index.php?","index.php?m=mobile&c=index",list_pos($catid))?>
+<?php $this_url = str_replace("http://m.","http://www.",$this_url)?>
+<div class="now">{$this_url}正文</div>
+<div class="news-list news-list2">
+{pc:mobile action="lists" catid="$catid" num="6" order="id DESC" return="info" page="$page"}
+{loop $info $i}
+<dl><a href="index.php?m=mobile&c=index&a=show&catid={$i[catid]}&id={$i[id]}">
+<dd>
+<h3>{$i[title]}</h3>
+<p>{$i[description]}...</p>
+</dd></a>
+</dl>
+<hr/>
+{/loop}
+{/pc}
+</div>
+<div class="pagenav">{$pages}</div>
+</div>
+{template "mobile","footer"}
